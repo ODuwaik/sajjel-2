@@ -906,16 +906,18 @@ img.pkg-tri {
     }
 
     .right {
+        display: flex;
+        align-items: center;
         justify-content: center;
         width: 100%;
     }
 
     .logo1 {
-        width: 50%;
+        width: clamp(150px, 45vw, 300px) !important;
     }
 
     .logo2 {
-        width: 30%;
+        width: clamp(70px, 20vw, 150px) !important;
     }
 
     .header .left a {
@@ -1470,18 +1472,21 @@ img.pkg-tri {
     }
 
     .ilm {
-        width: 35px !important;
+        width: 40px !important;
     }
 
     .right img.mx-3 {
-        display: none;
+        display: inline-block !important;
+        margin-left: 6px !important;
+        margin-right: 6px !important;
+        height: 30px;
     }
 
     .right {
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 0;
     }
 
     .f-widget {
@@ -1534,11 +1539,11 @@ img.pkg-tri {
     }
 
     .logo1 {
-        width: 45% !important;
+        width: clamp(130px, 45vw, 220px) !important;
     }
 
     .logo2 {
-        width: 18% !important;
+        width: clamp(55px, 20vw, 100px) !important;
     }
 
     .container-fluid {
