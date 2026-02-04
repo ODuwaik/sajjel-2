@@ -1115,6 +1115,60 @@ img.pkg-tri {
         margin-top: -40px;
     }
 
+    /* Ensure no gaps between sections on mobile */
+    .banner,
+    .about-banner,
+    .featuer-section,
+    .feature2-section,
+    .pkg-section,
+    .timing,
+    .pkg-section2,
+    .team-section,
+    .cta-sectin {
+        font-size: 0;
+        line-height: 0;
+        margin: 0;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+
+    .banner img,
+    .about-banner img,
+    .featuer-section img,
+    .feature2-section img,
+    .pkg-section img,
+    .timing img,
+    .pkg-section2 img,
+    .team-section img,
+    .cta-sectin img {
+        display: block;
+        vertical-align: top;
+    }
+
+    .banner .row,
+    .about-banner .row,
+    .featuer-section .row,
+    .feature2-section .row,
+    .pkg-section .row,
+    .timing .row,
+    .pkg-section2 .row,
+    .team-section .row,
+    .cta-sectin .row {
+        margin: 0 !important;
+        --bs-gutter-x: 0;
+    }
+
+    .banner .col-md-12,
+    .about-banner .col-md-12,
+    .featuer-section .col-md-12,
+    .feature2-section .col-md-12,
+    .pkg-section .col-md-12,
+    .timing .col-md-12,
+    .pkg-section2 .col-md-12,
+    .team-section .col-md-12,
+    .cta-sectin .col-md-12 {
+        padding: 0 !important;
+    }
 
     /*.certificate-bg:after{
         height: 311px;
@@ -1462,8 +1516,15 @@ img.pkg-tri {
 
     .header .left a {
         font-size: 11px;
-        padding: 10px 5px;
+        padding: 8px 4px;
         margin-left: 0px;
+    }
+
+    .left {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
     }
 
     .bl-1 {
@@ -1473,16 +1534,30 @@ img.pkg-tri {
     }
 
     .logo1 {
-        width: 50%;
+        width: 45% !important;
     }
 
     .logo2 {
-        width: 20%;
+        width: 18% !important;
     }
 
     .container-fluid {
         padding-right: 15px;
         padding-left: 15px;
+    }
+
+    /* Override global container-fluid padding for sections */
+    .banner .container-fluid,
+    .about-banner .container-fluid,
+    .featuer-section .container-fluid,
+    .feature2-section .container-fluid,
+    .pkg-section .container-fluid,
+    .timing .container-fluid,
+    .pkg-section2 .container-fluid,
+    .team-section .container-fluid,
+    .cta-sectin .container-fluid {
+        padding-right: 0 !important;
+        padding-left: 0 !important;
     }
 
     .heading-box h1 {
