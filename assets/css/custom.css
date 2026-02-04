@@ -926,6 +926,10 @@ img.pkg-tri {
 }
 
 @media only screen and (max-width: 768px) {
+    .season1-btn-img {
+        max-width: 160px !important;
+    }
+
     .mic-overlay {
         width: 250px !important;
         top: -70px !important;
