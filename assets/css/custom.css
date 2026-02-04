@@ -1336,11 +1336,6 @@ img.pkg-tri {
         font-size: 23px;
     }
 
-    .about-banner img {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-
     .about-content h3 {
         font-size: 17px;
         line-height: 28px;
@@ -1422,6 +1417,17 @@ img.pkg-tri {
 
     .ilm {
         width: 35px !important;
+    }
+
+    .right img.mx-3 {
+        display: none;
+    }
+
+    .right {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
     }
 
     .f-widget {
