@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>قريباً - مسابقة سجل</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32x32.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #DEEAE9;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100vh;
+            width: auto;
+            height: auto;
+        }
+        .desktop {
+            display: block;
+        }
+        .mobile {
+            display: none;
+        }
+        @media only screen and (max-width: 768px) {
+            .desktop {
+                display: none;
+            }
+            .mobile {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="assets/images/coming-soon.svg" alt="قريباً" class="desktop">
+    <img src="assets/images/coming-soon-mobile.svg" alt="قريباً" class="mobile">
+</body>
+</html>

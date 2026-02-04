@@ -31,8 +31,14 @@
     ;
 }
 
-body {
+html, body {
+    margin: 0;
+    padding: 0;
     overflow-x: hidden;
+    width: 100%;
+}
+
+body {
     color: #0E2938;
     font-family: 'GraphikArabic', sans-serif;
 }
@@ -146,12 +152,54 @@ body {
     display: none;
 }
 
+.hero-mobile {
+    display: none;
+}
+
+.hero-desktop {
+    display: block;
+}
+
+.section1-mobile {
+    display: none;
+}
+
+.section2-mobile {
+    display: none;
+}
+
+.section3-mobile {
+    display: none;
+}
+
+.section4-mobile {
+    display: none;
+}
+
+.section5-mobile {
+    display: none;
+}
+
+.section6-mobile {
+    display: none;
+}
+
+.section7-mobile {
+    display: none;
+}
+
+.section8-mobile {
+    display: none;
+}
+
+
 .about-banner {
-    background: url(../images/about-banner.png);
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 100px 0px 150px;
+    background: transparent;
+    padding: 0;
+}
+
+.about-banner .container-fluid {
+    padding: 0;
 }
 
 .about-content h1 {
@@ -177,8 +225,12 @@ body {
 }
 
 .featuer-section {
-    background: #DEEAE9;
-    padding: 100px 0px;
+    background: transparent;
+    padding: 0;
+}
+
+.featuer-section .container-fluid {
+    padding: 0;
 }
 
 .text-orange {
@@ -223,7 +275,12 @@ body {
 }
 
 .feature2-section {
-    padding: 100px 0px;
+    background: transparent;
+    padding: 0;
+}
+
+.feature2-section .container-fluid {
+    padding: 0;
 }
 
 .feature2-box {
@@ -305,8 +362,12 @@ body {
 }
 
 .cta-sectin {
-    padding: 40px 0px 40px;
-    background: #C8DDDA;
+    background: transparent;
+    padding: 0;
+}
+
+.cta-sectin .container-fluid {
+    padding: 0;
 }
 
 .imag-girl {
@@ -315,8 +376,12 @@ body {
 }
 
 .team-section {
-    padding: 60px 0 250px 0;
-    background-color: #F4F8F8;
+    background: transparent;
+    padding: 0;
+}
+
+.team-section .container-fluid {
+    padding: 0;
 }
 
 .team-section .heading-box h1 {
@@ -356,12 +421,12 @@ body {
 }
 
 .pkg-section {
-    background-image: url(../images/bg.png);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: top;
-    padding: 150px 0px;
-    /*    background: #C8DDDA;*/
+    background: transparent;
+    padding: 0;
+}
+
+.pkg-section .container-fluid {
+    padding: 0;
 }
 
 .font-bold {
@@ -379,12 +444,21 @@ body {
 }
 
 .timing {
-    padding: 100px 0px;
-    background: #E9F1F0;
+    background: transparent;
+    padding: 0;
+}
+
+.timing .container-fluid {
+    padding: 0;
 }
 
 .pkg-section2 {
-    padding: 100px 0px;
+    background: transparent;
+    padding: 0;
+}
+
+.pkg-section2 .container-fluid {
+    padding: 0;
 }
 
 .hightliht h5 {
@@ -652,12 +726,6 @@ img.pkg-tri {
 
 
 @media only screen and (max-width: 1300px) {
-    .mic-overlay {
-        width: 430px !important;
-        top: -110px !important;
-        left: 60px !important;
-    }
-
     .banner-contet h1 {
         font-size: 23px;
     }
@@ -721,18 +789,8 @@ img.pkg-tri {
 }
 
 @media only screen and (max-width: 1240px) {
-    .mic-overlay {
-        width: 400px !important;
-        top: -100px !important;
-        left: 50px !important;
-    }
-
     .price {
         width: 80%;
-    }
-
-    .team-section {
-        padding: 60px 0px;
     }
 
     .banner-contet h1 {
@@ -773,12 +831,6 @@ img.pkg-tri {
 }
 
 @media only screen and (max-width: 1120px) {
-    .mic-overlay {
-        width: 390px !important;
-        top: -80px !important;
-        left: 40px !important;
-    }
-
     .mobb-none {
         display: none !important;
     }
@@ -838,49 +890,6 @@ img.pkg-tri {
         top: -195px;
     }
 
-    .mic-overlay {
-        width: 290px !important;
-        top: -70px !important;
-        left: 30px !important;
-    }
-
-    .about-banner {
-        padding: 40px 0px !important;
-    }
-
-    .featuer-section {
-        padding: 40px 0px !important;
-    }
-
-    .feature2-section {
-        padding: 40px 0px !important;
-        padding-bottom: 120px !important;
-    }
-
-    .pkg-section {
-        padding: 40px 0px !important;
-    }
-
-    .timing {
-        padding: 40px 0px !important;
-    }
-
-    .pkg-section2 {
-        padding: 40px 0px !important;
-    }
-
-    .team-section {
-        padding: 40px 0px !important;
-    }
-
-    .cta-sectin {
-        padding: 40px 0px !important;
-    }
-
-    .about-banner img {
-        max-width: 100% !important;
-        width: 100% !important;
-    }
 }
 
 @media only screen and (max-width: 922px) {
@@ -913,75 +922,199 @@ img.pkg-tri {
         font-size: 14px;
     }
 
-    .container-fluid {
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-
-    .mic-overlay {
-        width: 300px !important;
-        top: -80px !important;
-        left: 40px !important;
-    }
 }
 
 @media only screen and (max-width: 768px) {
-    .season1-btn-img {
-        max-width: 160px !important;
+    .hero-desktop {
+        display: none !important;
     }
 
-    .mic-overlay {
-        width: 250px !important;
-        top: -70px !important;
-        left: 30px !important;
+    .hero-mobile {
+        display: block !important;
+    }
+
+    .section1-desktop {
+        display: none !important;
+    }
+
+    .section1-mobile {
+        display: block !important;
+        width: 100%;
     }
 
     .about-banner {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin-top: 0;
+    }
+
+    .about-banner .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section1-mobile {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .section2-desktop {
+        display: none !important;
+    }
+
+    .section2-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .featuer-section {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .featuer-section .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section3-desktop {
+        display: none !important;
+    }
+
+    .section3-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .feature2-section {
-        padding: 20px 0px !important;
-        padding-bottom: 100px !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .feature2-section .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section4-desktop {
+        display: none !important;
+    }
+
+    .section4-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .mic-overlay {
+        display: none !important;
     }
 
     .pkg-section {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        background-image: none !important;
+        padding: 0 !important;
+        margin-top: 0;
+    }
+
+    .pkg-section .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section5-desktop {
+        display: none !important;
+    }
+
+    .section5-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .timing {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin-top: 0;
+    }
+
+    .timing .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section6-desktop {
+        display: none !important;
+    }
+
+    .section6-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .pkg-section2 {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .pkg-section2 .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section7-desktop {
+        display: none !important;
+    }
+
+    .section7-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .team-section {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+    }
+
+    .team-section .container-fluid {
+        padding: 0 !important;
+    }
+
+    .section8-desktop {
+        display: none !important;
+    }
+
+    .section8-mobile {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
     }
 
     .cta-sectin {
-        padding: 20px 0px !important;
+        background: transparent !important;
+        padding: 0 !important;
+        margin-top: 0;
     }
 
-    .about-banner img {
-        max-width: 100% !important;
-        width: 100% !important;
+    .cta-sectin .container-fluid {
+        padding: 0 !important;
     }
 
-    .timig-box p {
-        padding: 0px !important;
+    .bottom-white-border {
+        display: none !important;
     }
 
-    .pkg-section {
-        background-position: 30%;
-        background-image: url(../images/bg-mob.png);
+    .certificate-bg:after {
+        display: none !important;
     }
+
+    .overlay {
+        display: none !important;
+    }
+
+    .season1-btn-img {
+        max-width: 192px !important;
+        margin-top: -40px;
+    }
+
 
     /*.certificate-bg:after{
         height: 311px;
@@ -1125,10 +1258,6 @@ img.pkg-tri {
         position: unset;
     }
 
-    .cta-sectin {
-        padding: 40px 0px 0px;
-    }
-
     .featuer-section .col-md-3 {
         width: 49.333%;
         margin-bottom: 30px;
@@ -1151,10 +1280,6 @@ img.pkg-tri {
 
     .pkg-head .heading-box h1 {
         font-size: 39px;
-    }
-
-    .pkg-section {
-        padding: 40px 0px;
     }
 
     .pkg2-headings h2 {
@@ -1209,45 +1334,6 @@ img.pkg-tri {
 
     .pkg-box h2 {
         font-size: 23px;
-    }
-
-    .mic-overlay {
-        width: 200px !important;
-        top: -60px !important;
-        left: 20px !important;
-    }
-
-    .about-banner {
-        padding: 20px 10px;
-    }
-
-    .featuer-section {
-        padding: 20px 0px !important;
-    }
-
-    .feature2-section {
-        padding: 20px 0px !important;
-        padding-bottom: 80px !important;
-    }
-
-    .pkg-section {
-        padding: 20px 0px !important;
-    }
-
-    .timing {
-        padding: 20px 0px !important;
-    }
-
-    .pkg-section2 {
-        padding: 20px 0px !important;
-    }
-
-    .team-section {
-        padding: 20px 0px !important;
-    }
-
-    .cta-sectin {
-        padding: 20px 0px !important;
     }
 
     .about-banner img {
@@ -1411,10 +1497,6 @@ img.pkg-tri {
         margin-top: -2px;
     }
 
-    .featuer-section {
-        padding: 40px 0px;
-    }
-
     .feature2-box img {
         width: 100%;
     }
@@ -1495,12 +1577,6 @@ img.pkg-tri {
 }
 
 @media only screen and (max-width: 391px) {
-    .mic-overlay {
-        width: 130px !important;
-        top: -35px !important;
-        left: 10px !important;
-    }
-
     .banner-contet h1 {
         font-size: 28px;
     }
@@ -1520,44 +1596,6 @@ img.pkg-tri {
 }
 
 @media only screen and (max-width: 345px) {
-    .mic-overlay {
-        width: 110px !important;
-        top: -30px !important;
-        left: 8px !important;
-    }
-
-    .about-banner {
-        padding-bottom: 10px !important;
-    }
-
-    .featuer-section {
-        padding-bottom: 10px !important;
-    }
-
-    .feature2-section {
-        padding-bottom: 60px !important;
-    }
-
-    .pkg-section {
-        padding-bottom: 10px !important;
-    }
-
-    .timing {
-        padding-bottom: 10px !important;
-    }
-
-    .pkg-section2 {
-        padding-bottom: 10px !important;
-    }
-
-    .team-section {
-        padding-bottom: 10px !important;
-    }
-
-    .cta-sectin {
-        padding-bottom: 10px !important;
-    }
-
     .banner-contet.text-center {
         width: 100%;
     }
@@ -1637,10 +1675,6 @@ img.pkg-tri {
 
     .cta-content h2 {
         font-size: 26px;
-    }
-
-    .team-section {
-        padding: 40px 0px;
     }
 
     .heading-box.w-50.mb-5.pb-5 {
