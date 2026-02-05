@@ -261,7 +261,6 @@
 	 <script>
 	 (function() {
 	 	var TOTAL = 9;
-	 	var GAP = 20;
 	 	var current = 4;
 
 	 	var wrapper = document.getElementById('sliderWrapper');
@@ -272,21 +271,23 @@
 	 	var hiRes = [];
 	 	for (var i = 1; i <= TOTAL; i++) hiRes.push('assets/images/image-' + i + '.jpg');
 
+	 	function getGap() {
+	 		return parseFloat(getComputedStyle(track).gap) || 20;
+	 	}
+
 	 	// Center the active slide in the viewport
 	 	function render() {
-	 		// Mark active
 	 		for (var i = 0; i < slides.length; i++) {
 	 			if (i === current) slides[i].classList.add('active');
 	 			else slides[i].classList.remove('active');
 	 		}
 
-	 		// Wait a frame so the browser recalculates sizes after scale change
 	 		requestAnimationFrame(function() {
 	 			var ww = wrapper.offsetWidth;
-	 			// Calculate the center position of the active slide
+	 			var gap = getGap();
 	 			var pos = 0;
 	 			for (var i = 0; i < current; i++) {
-	 				pos += slides[i].offsetWidth + GAP;
+	 				pos += slides[i].offsetWidth + gap;
 	 			}
 	 			var center = pos + slides[current].offsetWidth / 2;
 	 			var offset = ww / 2 - center;
@@ -324,8 +325,17 @@
 	 		else if (d < -50) go(current - 1);
 	 	}, { passive: true });
 
-	 	// Init + resize
-	 	render();
+	 	// Wait for all slide images to load before first render
+	 	var imgs = track.querySelectorAll('img');
+	 	var loaded = 0;
+	 	function onImgLoad() {
+	 		loaded++;
+	 		if (loaded >= imgs.length) render();
+	 	}
+	 	for (var il = 0; il < imgs.length; il++) {
+	 		if (imgs[il].complete) { onImgLoad(); }
+	 		else { imgs[il].addEventListener('load', onImgLoad); }
+	 	}
 	 	window.addEventListener('resize', function() { render(); });
 
 	 	// ---- Lightbox ----
@@ -562,12 +572,15 @@
 	 <script>
 	 (function() {
 	 	var TOTAL = 9;
-	 	var GAP = 20;
 	 	var current = 4;
 
 	 	var wrapper = document.getElementById('s3Wrapper');
 	 	var track = document.getElementById('s3Track');
 	 	var slides = track.querySelectorAll('.s3-slide-item');
+
+	 	function getGap() {
+	 		return parseFloat(getComputedStyle(track).gap) || 20;
+	 	}
 
 	 	function render() {
 	 		for (var i = 0; i < slides.length; i++) {
@@ -576,9 +589,10 @@
 	 		}
 	 		requestAnimationFrame(function() {
 	 			var ww = wrapper.offsetWidth;
+	 			var gap = getGap();
 	 			var pos = 0;
 	 			for (var i = 0; i < current; i++) {
-	 				pos += slides[i].offsetWidth + GAP;
+	 				pos += slides[i].offsetWidth + gap;
 	 			}
 	 			var center = pos + slides[current].offsetWidth / 2;
 	 			var offset = ww / 2 - center;
@@ -617,7 +631,16 @@
 	 		else if (d < -50) go(current - 1);
 	 	}, { passive: true });
 
-	 	render();
+	 	var imgs = track.querySelectorAll('img');
+	 	var loaded = 0;
+	 	function onImgLoad() {
+	 		loaded++;
+	 		if (loaded >= imgs.length) render();
+	 	}
+	 	for (var il = 0; il < imgs.length; il++) {
+	 		if (imgs[il].complete) { onImgLoad(); }
+	 		else { imgs[il].addEventListener('load', onImgLoad); }
+	 	}
 	 	window.addEventListener('resize', function() { render(); });
 	 })();
 	 </script>
