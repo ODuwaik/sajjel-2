@@ -72,18 +72,556 @@
 	 </div>
 	 <!-- header -->
 
-	 <!-- Main Content -->
-	 <div class="season1-content" style="background: #FFFFFF; min-height: 500px; padding: 100px 0;">
-	 	<div class="container-fluid">
-	 		<div class="row">
-	 			<div class="col-md-12 text-center">
-	 				<h1 style="font-family: GraphikArabic; font-size: 50px; font-weight: 900; color: #0E2938;">مقتطفات الموسم 1</h1>
-	 				<p style="font-size: 24px; color: #666; margin-top: 30px;">المحتوى قادم قريباً...</p>
-	 			</div>
+	 <!-- Hero Section -->
+	 <style>
+	 	.season1-hero {
+	 		background: #0E2938;
+	 		height: 900px;
+	 		display: flex;
+	 		flex-direction: column;
+	 		align-items: center;
+	 		padding-top: 80px;
+	 		overflow: hidden;
+	 	}
+	 	.season1-hero h1 {
+	 		font-family: GraphikArabic;
+	 		font-size: 50px;
+	 		font-weight: 900;
+	 		color: #FFFFFF;
+	 		margin-bottom: 60px;
+	 	}
+
+	 	/* Slider */
+	 	.slider-wrapper {
+	 		width: 100%;
+	 		overflow: hidden;
+	 		direction: ltr;
+	 	}
+	 	.slider-track {
+	 		display: flex;
+	 		align-items: center;
+	 		gap: 20px;
+	 		transition: transform 0.5s ease;
+	 		padding: 40px 0;
+	 		will-change: transform;
+	 	}
+	 	.slide-item {
+	 		flex: 0 0 auto;
+	 		cursor: pointer;
+	 		transition: transform 0.5s ease, opacity 0.5s ease;
+	 		transform: scale(0.8);
+	 		opacity: 0.6;
+	 	}
+	 	.slide-item.active {
+	 		transform: scale(1);
+	 		opacity: 1;
+	 	}
+	 	.slide-item img {
+	 		height: 420px;
+	 		width: auto;
+	 		display: block;
+	 		pointer-events: none;
+	 	}
+
+	 	/* Arrows */
+	 	.slider-arrows {
+	 		display: flex;
+	 		justify-content: center;
+	 		align-items: center;
+	 		gap: 16px;
+	 		margin-top: 40px;
+	 		direction: ltr;
+	 	}
+	 	.slider-arrows button {
+	 		background: none;
+	 		border: none;
+	 		cursor: pointer;
+	 		padding: 0;
+	 		line-height: 0;
+	 		transition: opacity 0.2s;
+	 	}
+	 	.slider-arrows button:hover { opacity: 0.8; }
+	 	.slider-arrows button img {
+	 		width: 48px;
+	 		height: 48px;
+	 	}
+
+	 	/* Lightbox */
+	 	.lightbox-overlay {
+	 		display: none;
+	 		position: fixed;
+	 		top: 0; left: 0;
+	 		width: 100%; height: 100%;
+	 		background: rgba(0,0,0,0.92);
+	 		z-index: 9999;
+	 		align-items: center;
+	 		justify-content: center;
+	 	}
+	 	.lightbox-overlay.active { display: flex; }
+	 	.lightbox-content {
+	 		max-width: 90vw;
+	 		max-height: 85vh;
+	 		display: flex;
+	 		align-items: center;
+	 		justify-content: center;
+	 	}
+	 	.lightbox-content img {
+	 		max-width: 100%;
+	 		max-height: 85vh;
+	 		object-fit: contain;
+	 		border-radius: 12px;
+	 	}
+	 	.lightbox-close {
+	 		position: absolute;
+	 		top: 20px; right: 20px;
+	 		background: none; border: none;
+	 		color: #fff; font-size: 40px;
+	 		cursor: pointer; z-index: 10001;
+	 		line-height: 1;
+	 	}
+	 	.lightbox-nav {
+	 		position: absolute;
+	 		top: 50%;
+	 		transform: translateY(-50%);
+	 		background: none; border: none;
+	 		cursor: pointer; padding: 0;
+	 		line-height: 0; z-index: 10000;
+	 		transition: opacity 0.2s;
+	 	}
+	 	.lightbox-nav:hover { opacity: 0.8; }
+	 	.lightbox-nav img {
+	 		width: 48px; height: 48px;
+	 		border-radius: 0 !important;
+	 	}
+	 	.lightbox-prev { left: 30px; }
+	 	.lightbox-next { right: 30px; }
+
+	 	/* Responsive */
+	 	@media (max-width: 768px) {
+	 		.season1-hero {
+	 			height: auto;
+	 			padding: 50px 0 60px;
+	 		}
+	 		.season1-hero h1 {
+	 			font-size: 32px;
+	 			margin-bottom: 30px;
+	 		}
+	 		.slide-item img { height: 250px; }
+	 		.slider-track { gap: 12px; padding: 20px 0; }
+	 		.slider-arrows { margin-top: 24px; }
+	 		.slider-arrows button img { width: 40px; height: 40px; }
+	 		.lightbox-prev { left: 10px; }
+	 		.lightbox-next { right: 10px; }
+	 		.lightbox-nav img { width: 36px; height: 36px; }
+	 	}
+	 	@media (max-width: 480px) {
+	 		.season1-hero { padding: 40px 0 50px; }
+	 		.season1-hero h1 { font-size: 26px; margin-bottom: 24px; }
+	 		.slide-item img { height: 200px; }
+	 	}
+	 </style>
+
+	 <div class="season1-hero">
+	 	<h1>مقتطفات الموسم</h1>
+
+	 	<div class="slider-wrapper" id="sliderWrapper">
+	 		<div class="slider-track" id="sliderTrack">
+	 			<div class="slide-item" data-index="0"><img src="assets/images/thumb-1.svg" alt="مقتطف 1"></div>
+	 			<div class="slide-item" data-index="1"><img src="assets/images/thumb-2.svg" alt="مقتطف 2"></div>
+	 			<div class="slide-item" data-index="2"><img src="assets/images/thumb-3.svg" alt="مقتطف 3"></div>
+	 			<div class="slide-item" data-index="3"><img src="assets/images/thumb-4.svg" alt="مقتطف 4"></div>
+	 			<div class="slide-item" data-index="4"><img src="assets/images/thumb-5.svg" alt="مقتطف 5"></div>
+	 			<div class="slide-item" data-index="5"><img src="assets/images/thumb-6.svg" alt="مقتطف 6"></div>
+	 			<div class="slide-item" data-index="6"><img src="assets/images/thumb-7.svg" alt="مقتطف 7"></div>
+	 			<div class="slide-item" data-index="7"><img src="assets/images/thumb-8.svg" alt="مقتطف 8"></div>
+	 			<div class="slide-item" data-index="8"><img src="assets/images/thumb-9.svg" alt="مقتطف 9"></div>
 	 		</div>
 	 	</div>
+
+	 	<div class="slider-arrows">
+	 		<button id="btnPrev" aria-label="السابق"><img src="assets/images/arrow-left.svg" alt="السابق"></button>
+	 		<button id="btnNext" aria-label="التالي"><img src="assets/images/arrow-right.svg" alt="التالي"></button>
+	 	</div>
 	 </div>
-	 <!-- Main Content -->
+
+	 <!-- Lightbox -->
+	 <div class="lightbox-overlay" id="lightbox">
+	 	<button class="lightbox-close" id="lightboxClose">&times;</button>
+	 	<button class="lightbox-nav lightbox-prev" id="lbPrev">
+	 		<img src="assets/images/arrow-left.svg" alt="السابق">
+	 	</button>
+	 	<div class="lightbox-content">
+	 		<img id="lightboxImage" src="" alt="">
+	 	</div>
+	 	<button class="lightbox-nav lightbox-next" id="lbNext">
+	 		<img src="assets/images/arrow-right.svg" alt="التالي">
+	 	</button>
+	 </div>
+
+	 <script>
+	 (function() {
+	 	var TOTAL = 9;
+	 	var GAP = 20;
+	 	var current = 4;
+
+	 	var wrapper = document.getElementById('sliderWrapper');
+	 	var track = document.getElementById('sliderTrack');
+	 	var slides = track.querySelectorAll('.slide-item');
+
+	 	// Build high-res paths
+	 	var hiRes = [];
+	 	for (var i = 1; i <= TOTAL; i++) hiRes.push('assets/images/image-' + i + '.jpg');
+
+	 	// Center the active slide in the viewport
+	 	function render() {
+	 		// Mark active
+	 		for (var i = 0; i < slides.length; i++) {
+	 			if (i === current) slides[i].classList.add('active');
+	 			else slides[i].classList.remove('active');
+	 		}
+
+	 		// Wait a frame so the browser recalculates sizes after scale change
+	 		requestAnimationFrame(function() {
+	 			var ww = wrapper.offsetWidth;
+	 			// Calculate the center position of the active slide
+	 			var pos = 0;
+	 			for (var i = 0; i < current; i++) {
+	 				pos += slides[i].offsetWidth + GAP;
+	 			}
+	 			var center = pos + slides[current].offsetWidth / 2;
+	 			var offset = ww / 2 - center;
+	 			track.style.transform = 'translateX(' + offset + 'px)';
+	 		});
+	 	}
+
+	 	function go(index) {
+	 		if (index < 0) index = 0;
+	 		if (index >= TOTAL) index = TOTAL - 1;
+	 		current = index;
+	 		render();
+	 	}
+
+	 	// Arrow buttons: < prev, > next (LTR slider direction)
+	 	document.getElementById('btnPrev').addEventListener('click', function() { go(current - 1); });
+	 	document.getElementById('btnNext').addEventListener('click', function() { go(current + 1); });
+
+	 	// Click slide: if active open lightbox, otherwise center it
+	 	for (var s = 0; s < slides.length; s++) {
+	 		(function(i) {
+	 			slides[i].addEventListener('click', function() {
+	 				if (i === current) openLightbox(i);
+	 				else go(i);
+	 			});
+	 		})(s);
+	 	}
+
+	 	// Touch swipe
+	 	var tx = 0;
+	 	track.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+	 	track.addEventListener('touchend', function(e) {
+	 		var d = tx - e.changedTouches[0].screenX;
+	 		if (d > 50) go(current + 1);
+	 		else if (d < -50) go(current - 1);
+	 	}, { passive: true });
+
+	 	// Init + resize
+	 	render();
+	 	window.addEventListener('resize', function() { render(); });
+
+	 	// ---- Lightbox ----
+	 	var lb = document.getElementById('lightbox');
+	 	var lbImg = document.getElementById('lightboxImage');
+	 	var lbIndex = 0;
+
+	 	function openLightbox(i) {
+	 		lbIndex = i;
+	 		lbImg.src = hiRes[i];
+	 		lb.classList.add('active');
+	 		document.body.style.overflow = 'hidden';
+	 	}
+	 	function closeLightbox() {
+	 		lb.classList.remove('active');
+	 		document.body.style.overflow = '';
+	 	}
+	 	function lbGo(dir) {
+	 		lbIndex = (lbIndex + dir + TOTAL) % TOTAL;
+	 		lbImg.src = hiRes[lbIndex];
+	 	}
+
+	 	document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+	 	document.getElementById('lbPrev').addEventListener('click', function() { lbGo(-1); });
+	 	document.getElementById('lbNext').addEventListener('click', function() { lbGo(1); });
+	 	lb.addEventListener('click', function(e) { if (e.target === lb) closeLightbox(); });
+
+	 	document.addEventListener('keydown', function(e) {
+	 		if (!lb.classList.contains('active')) return;
+	 		if (e.key === 'Escape') closeLightbox();
+	 		if (e.key === 'ArrowLeft') lbGo(-1);
+	 		if (e.key === 'ArrowRight') lbGo(1);
+	 	});
+	 })();
+	 </script>
+	 <!-- Hero Section -->
+
+	 <!-- Section 2: Video -->
+	 <style>
+	 	.section2-video {
+	 		width: 100%;
+	 		cursor: pointer;
+	 		transition: opacity 0.3s ease;
+	 	}
+	 	.section2-video:hover { opacity: 0.9; }
+	 	.section2-video img {
+	 		width: 100%;
+	 		display: block;
+	 	}
+
+	 	/* Video Modal */
+	 	.video-modal {
+	 		display: none;
+	 		position: fixed;
+	 		top: 0; left: 0;
+	 		width: 100%; height: 100%;
+	 		background: rgba(0,0,0,0.92);
+	 		z-index: 9999;
+	 		align-items: center;
+	 		justify-content: center;
+	 	}
+	 	.video-modal.active { display: flex; }
+	 	.video-modal-close {
+	 		position: absolute;
+	 		top: 20px; right: 20px;
+	 		background: none; border: none;
+	 		color: #fff; font-size: 40px;
+	 		cursor: pointer; z-index: 10001;
+	 		line-height: 1;
+	 	}
+	 	.video-modal video {
+	 		max-width: 90vw;
+	 		max-height: 85vh;
+	 		border-radius: 12px;
+	 		outline: none;
+	 	}
+	 </style>
+
+	 <div class="section2-video" id="videoThumb">
+	 	<img src="assets/images/section-2-background-highlights.svg" alt="شاهد الفيديو">
+	 </div>
+
+	 <!-- Video Modal -->
+	 <div class="video-modal" id="videoModal">
+	 	<button class="video-modal-close" id="videoModalClose">&times;</button>
+	 	<video id="videoPlayer" controls>
+	 		<source src="assets/images/recap-video.mp4" type="video/mp4">
+	 	</video>
+	 </div>
+
+	 <script>
+	 (function() {
+	 	var modal = document.getElementById('videoModal');
+	 	var video = document.getElementById('videoPlayer');
+
+	 	document.getElementById('videoThumb').addEventListener('click', function() {
+	 		modal.classList.add('active');
+	 		document.body.style.overflow = 'hidden';
+	 		video.play();
+	 	});
+
+	 	function closeVideo() {
+	 		video.pause();
+	 		video.currentTime = 0;
+	 		modal.classList.remove('active');
+	 		document.body.style.overflow = '';
+	 	}
+
+	 	document.getElementById('videoModalClose').addEventListener('click', closeVideo);
+	 	modal.addEventListener('click', function(e) {
+	 		if (e.target === modal) closeVideo();
+	 	});
+	 	document.addEventListener('keydown', function(e) {
+	 		if (e.key === 'Escape' && modal.classList.contains('active')) closeVideo();
+	 	});
+	 })();
+	 </script>
+	 <!-- Section 2: Video -->
+
+	 <!-- Section 3: Winners Slider -->
+	 <style>
+	 	.section3-winners {
+	 		background: #DEEAE9;
+	 		height: 900px;
+	 		display: flex;
+	 		flex-direction: column;
+	 		align-items: center;
+	 		padding-top: 80px;
+	 		overflow: hidden;
+	 	}
+	 	.section3-winners h2 {
+	 		font-family: GraphikArabic;
+	 		font-size: 50px;
+	 		font-weight: 900;
+	 		color: #0E2938;
+	 		margin-bottom: 60px;
+	 	}
+	 	.s3-slider-wrapper {
+	 		width: 100%;
+	 		overflow: hidden;
+	 		direction: ltr;
+	 	}
+	 	.s3-slider-track {
+	 		display: flex;
+	 		align-items: center;
+	 		gap: 20px;
+	 		transition: transform 0.5s ease;
+	 		padding: 40px 0;
+	 		will-change: transform;
+	 	}
+	 	.s3-slide-item {
+	 		flex: 0 0 auto;
+	 		cursor: pointer;
+	 		transition: transform 0.5s ease, opacity 0.5s ease;
+	 		transform: scale(0.8);
+	 		opacity: 0.6;
+	 	}
+	 	.s3-slide-item.active {
+	 		transform: scale(1);
+	 		opacity: 1;
+	 	}
+	 	.s3-slide-item img {
+	 		height: 420px;
+	 		width: auto;
+	 		display: block;
+	 		pointer-events: none;
+	 	}
+	 	.s3-slider-arrows {
+	 		display: flex;
+	 		justify-content: center;
+	 		align-items: center;
+	 		gap: 16px;
+	 		margin-top: 40px;
+	 		direction: ltr;
+	 	}
+	 	.s3-slider-arrows button {
+	 		background: none;
+	 		border: none;
+	 		cursor: pointer;
+	 		padding: 0;
+	 		line-height: 0;
+	 		transition: opacity 0.2s;
+	 	}
+	 	.s3-slider-arrows button:hover { opacity: 0.8; }
+	 	.s3-slider-arrows button img {
+	 		width: 48px;
+	 		height: 48px;
+	 	}
+
+	 	@media (max-width: 768px) {
+	 		.section3-winners {
+	 			height: auto;
+	 			padding: 50px 0 60px;
+	 		}
+	 		.section3-winners h2 {
+	 			font-size: 32px;
+	 			margin-bottom: 30px;
+	 		}
+	 		.s3-slide-item img { height: 250px; }
+	 		.s3-slider-track { gap: 12px; padding: 20px 0; }
+	 		.s3-slider-arrows { margin-top: 24px; }
+	 		.s3-slider-arrows button img { width: 40px; height: 40px; }
+	 	}
+	 	@media (max-width: 480px) {
+	 		.section3-winners { padding: 40px 0 50px; }
+	 		.section3-winners h2 { font-size: 26px; margin-bottom: 24px; }
+	 		.s3-slide-item img { height: 200px; }
+	 	}
+	 </style>
+
+	 <div class="section3-winners">
+	 	<h2>حلقات الفائزين</h2>
+
+	 	<div class="s3-slider-wrapper" id="s3Wrapper">
+	 		<div class="s3-slider-track" id="s3Track">
+	 			<div class="s3-slide-item" data-index="0" data-link="#"><img src="assets/images/thumb-1.svg" alt="حلقة 1"></div>
+	 			<div class="s3-slide-item" data-index="1" data-link="#"><img src="assets/images/thumb-2.svg" alt="حلقة 2"></div>
+	 			<div class="s3-slide-item" data-index="2" data-link="#"><img src="assets/images/thumb-3.svg" alt="حلقة 3"></div>
+	 			<div class="s3-slide-item" data-index="3" data-link="#"><img src="assets/images/thumb-4.svg" alt="حلقة 4"></div>
+	 			<div class="s3-slide-item" data-index="4" data-link="#"><img src="assets/images/thumb-5.svg" alt="حلقة 5"></div>
+	 			<div class="s3-slide-item" data-index="5" data-link="#"><img src="assets/images/thumb-6.svg" alt="حلقة 6"></div>
+	 			<div class="s3-slide-item" data-index="6" data-link="#"><img src="assets/images/thumb-7.svg" alt="حلقة 7"></div>
+	 			<div class="s3-slide-item" data-index="7" data-link="#"><img src="assets/images/thumb-8.svg" alt="حلقة 8"></div>
+	 			<div class="s3-slide-item" data-index="8" data-link="#"><img src="assets/images/thumb-9.svg" alt="حلقة 9"></div>
+	 		</div>
+	 	</div>
+
+	 	<div class="s3-slider-arrows">
+	 		<button id="s3Prev" aria-label="السابق"><img src="assets/images/arrow-left.svg" alt="السابق"></button>
+	 		<button id="s3Next" aria-label="التالي"><img src="assets/images/arrow-right.svg" alt="التالي"></button>
+	 	</div>
+	 </div>
+
+	 <script>
+	 (function() {
+	 	var TOTAL = 9;
+	 	var GAP = 20;
+	 	var current = 4;
+
+	 	var wrapper = document.getElementById('s3Wrapper');
+	 	var track = document.getElementById('s3Track');
+	 	var slides = track.querySelectorAll('.s3-slide-item');
+
+	 	function render() {
+	 		for (var i = 0; i < slides.length; i++) {
+	 			if (i === current) slides[i].classList.add('active');
+	 			else slides[i].classList.remove('active');
+	 		}
+	 		requestAnimationFrame(function() {
+	 			var ww = wrapper.offsetWidth;
+	 			var pos = 0;
+	 			for (var i = 0; i < current; i++) {
+	 				pos += slides[i].offsetWidth + GAP;
+	 			}
+	 			var center = pos + slides[current].offsetWidth / 2;
+	 			var offset = ww / 2 - center;
+	 			track.style.transform = 'translateX(' + offset + 'px)';
+	 		});
+	 	}
+
+	 	function go(index) {
+	 		if (index < 0) index = 0;
+	 		if (index >= TOTAL) index = TOTAL - 1;
+	 		current = index;
+	 		render();
+	 	}
+
+	 	document.getElementById('s3Prev').addEventListener('click', function() { go(current - 1); });
+	 	document.getElementById('s3Next').addEventListener('click', function() { go(current + 1); });
+
+	 	for (var s = 0; s < slides.length; s++) {
+	 		(function(i) {
+	 			slides[i].addEventListener('click', function() {
+	 				if (i === current) {
+	 					var link = slides[i].getAttribute('data-link');
+	 					if (link && link !== '#') window.open(link, '_blank');
+	 				} else {
+	 					go(i);
+	 				}
+	 			});
+	 		})(s);
+	 	}
+
+	 	var tx = 0;
+	 	track.addEventListener('touchstart', function(e) { tx = e.changedTouches[0].screenX; }, { passive: true });
+	 	track.addEventListener('touchend', function(e) {
+	 		var d = tx - e.changedTouches[0].screenX;
+	 		if (d > 50) go(current + 1);
+	 		else if (d < -50) go(current - 1);
+	 	}, { passive: true });
+
+	 	render();
+	 	window.addEventListener('resize', function() { render(); });
+	 })();
+	 </script>
+	 <!-- Section 3: Winners Slider -->
 
 	 <!-- footer -->
 	 <div class="footer">
